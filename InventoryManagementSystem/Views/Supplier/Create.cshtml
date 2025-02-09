@@ -1,0 +1,79 @@
+﻿@model InventoryManagementSystem.DTO.SupplierDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 p-6 space-y-8">
+    <div class="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-lg p-8 border border-white/20">
+        <div class="relative z-10">
+            <h1 class="text-3xl font-bold text-white mb-2">Add New Supplier</h1>
+            <p class="text-blue-200">Create a new supplier record</p>
+        </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto">
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+            <form asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+
+                @if (!ViewContext.ModelState.IsValid)
+                {
+                    <div class="bg-red-500/20 border border-red-500/50 rounded-lg p-3 mb-6">
+                        <div asp-validation-summary="All" class="text-red-200 text-sm"></div>
+                    </div>
+                }
+
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Name -->
+                        <div class="space-y-2">
+                            <label asp-for="Name" class="block text-sm font-medium text-blue-200">Name</label>
+                            <input asp-for="Name" class="form-input" />
+                            <span asp-validation-for="Name" class="text-red-400 text-xs"></span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="space-y-2">
+                            <label asp-for="Email" class="block text-sm font-medium text-blue-200">Email</label>
+                            <input asp-for="Email" type="email" class="form-input" />
+                            <span asp-validation-for="Email" class="text-red-400 text-xs"></span>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="space-y-2">
+                            <label asp-for="ValidPhoneNumber" class="block text-sm font-medium text-blue-200">Phone Number</label>
+                            <input asp-for="ValidPhoneNumber" type="tel" class="form-input" />
+                            <span asp-validation-for="ValidPhoneNumber" class="text-red-400 text-xs"></span>
+                        </div>
+
+                        <!-- Region -->
+                        <div class="space-y-2">
+                            <label asp-for="Region" class="block text-sm font-medium text-blue-200">Region</label>
+                            <input asp-for="Region" class="form-input" />
+                            <span asp-validation-for="Region" class="text-red-400 text-xs"></span>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="space-y-2">
+                        <label asp-for="Address" class="block text-sm font-medium text-blue-200">Address</label>
+                        <textarea asp-for="Address" rows="3" class="form-input"></textarea>
+                        <span asp-validation-for="Address" class="text-red-400 text-xs"></span>
+                    </div>
+
+                    <!-- Father Name -->
+                    <div class="space-y-2">
+                        <label asp-for="FatherName" class="block text-sm font-medium text-blue-200">Father Name</label>
+                        <input asp-for="FatherName" class="form-input" />
+                        <span asp-validation-for="FatherName" class="text-red-400 text-xs"></span>
+                    </div>
+
+                    <div class="flex justify-end space-x-4">
+                        <a asp-action="Index" class="button-secondary">Cancel</a>
+                        <button type="submit" class="button-primary">Create Supplier</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

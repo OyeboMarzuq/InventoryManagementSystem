@@ -1,0 +1,9 @@
+﻿@* @if (User.IsAuthenticated)
+{
+    <form asp-controller="User" asp-action="Logout" method="post" class="inline">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+            Logout
+        </button>
+    </form>
+} *@

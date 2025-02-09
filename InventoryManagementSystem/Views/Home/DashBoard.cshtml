@@ -1,0 +1,218 @@
+﻿@{
+    ViewData["Title"] = "DashBoard";
+    Layout = "_Layout";
+}
+
+<div class="p-6 space-y-8">
+    <!-- Welcome Section -->
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 p-8 text-white">
+        <div class="relative z-10">
+            <h1 class="text-3xl font-bold mb-2">Welcome back, @User.Identity?.Name</h1>
+            <p class="text-blue-100">Here's what's happening with your inventory today.</p>
+        </div>
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-700">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Items</p>
+                    <p class="text-2xl font-bold text-gray-900 dark:text-white">1,234</p>
+                </div>
+                <div class="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M20 12V8h-4V4h-4v4H8v4H4v4h4v4h4v-4h4v-4h4z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center text-sm">
+                <span class="text-green-500 flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                    12%
+                </span>
+                <span class="text-gray-500 dark:text-gray-400 ml-2">from last month</span>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-700">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Low Stock Items</p>
+                    <p class="text-2xl font-bold text-gray-900 dark:text-white">23</p>
+                </div>
+                <div class="p-3 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center text-sm">
+                <span class="text-red-500 flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M13 17h8m0 0v-8m0 8l-8-8-4 4-6-6"></path>
+                    </svg>
+                    5%
+                </span>
+                <span class="text-gray-500 dark:text-gray-400 ml-2">needs attention</span>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-700">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Value</p>
+                    <p class="text-2xl font-bold text-gray-900 dark:text-white">$52,312</p>
+                </div>
+                <div class="p-3 bg-green-50 dark:bg-green-900/30 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center text-sm">
+                <span class="text-green-500 flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                    8.2%
+                </span>
+                <span class="text-gray-500 dark:text-gray-400 ml-2">from last month</span>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-700">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Recent Orders</p>
+                    <p class="text-2xl font-bold text-gray-900 dark:text-white">89</p>
+                </div>
+                <div class="p-3 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center text-sm">
+                <span class="text-green-500 flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                    15%
+                </span>
+                <span class="text-gray-500 dark:text-gray-400 ml-2">this week</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Quick Actions -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-700">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Quick Actions</h2>
+                <span class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                    </svg>
+                </span>
+            </div>
+            <div class="space-y-3">
+                <a href="#" class="flex items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg group transition-colors">
+                    <span class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 4v16m8-8H4"/>
+                        </svg>
+                    </span>
+                    <span class="text-gray-700 dark:text-gray-200 group-hover:text-blue-500 transition-colors">Add New Item</span>
+                </a>
+                <a href="#" class="flex items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg group transition-colors">
+                    <span class="p-2 bg-purple-50 dark:bg-purple-900/30 rounded-lg mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </span>
+                    <span class="text-gray-700 dark:text-gray-200 group-hover:text-purple-500 transition-colors">Generate Report</span>
+                </a>
+                <a href="#" class="flex items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg group transition-colors">
+                    <span class="p-2 bg-green-50 dark:bg-green-900/30 rounded-lg mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                        </svg>
+                    </span>
+                    <span class="text-gray-700 dark:text-gray-200 group-hover:text-green-500 transition-colors">Stock Transfer</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-700">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Activity</h2>
+                <button class="text-sm text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">View all</button>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-start space-x-4">
+                    <div class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 4v16m8-8H4"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">New item added</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Added 50 units of "Widget X" to inventory</p>
+                        <p class="text-xs text-gray-400 dark:text-gray-500">2 hours ago</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="p-2 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">Low stock alert</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">"Product Y" is running low (5 units remaining)</p>
+                        <p class="text-xs text-gray-400 dark:text-gray-500">5 hours ago</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="p-2 bg-green-50 dark:bg-green-900/30 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">Order fulfilled</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Order #12345 has been processed and shipped</p>
+                        <p class="text-xs text-gray-400 dark:text-gray-500">1 day ago</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add subtle animation to the cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.rounded-xl');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease-out';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+}
