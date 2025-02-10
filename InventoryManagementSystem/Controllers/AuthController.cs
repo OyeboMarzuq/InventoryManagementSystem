@@ -28,7 +28,7 @@ namespace InventoryManagementSystem.Controllers
                 var result = await _authService.Login(model);
                 if (result.Success)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Auth", "Login");
                 }
                 ModelState.AddModelError(string.Empty, result.Message);
             }
