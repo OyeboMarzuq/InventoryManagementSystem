@@ -13,6 +13,8 @@ namespace InventoryManagementSystem.Context
 
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Product> Products { get; set; }
+
 
     }
 }

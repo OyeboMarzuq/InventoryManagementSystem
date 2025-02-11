@@ -26,7 +26,7 @@ namespace InventoryManagementSystem.Implementation.Services
             // Convert DTO to entity (you can also map with AutoMapper if needed)
             var auditLog = new AuditLog
             {
-                Id = Guid.NewGuid(),
+               // Id = Guid.NewGuid(),
                 ActionPerformed = auditLogDto.ActionPerformed,
                 PerformedBy = auditLogDto.PerformedBy,
                 Timestamp = DateTime.UtcNow,
