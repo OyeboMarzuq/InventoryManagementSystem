@@ -21,6 +21,7 @@ namespace InventoryManagementSystem.Implementation.Services
             {
                 var user = new User
                 {
+                    UserName = model.UserName,
                     FirstName = model.FirstName,
                     PhoneNumber = model.PhoneNumber,
                     Address = model.Address,
@@ -71,7 +72,7 @@ namespace InventoryManagementSystem.Implementation.Services
         {
             try
             {
-                var user = await _userManager.FindByNameAsync(model.Username);
+                var user = await _userManager.FindByNameAsync(model.UserName);
                 if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
                 {
                     return new BaseResponse<User> { Success = false, Message = "Invalid username or password." };

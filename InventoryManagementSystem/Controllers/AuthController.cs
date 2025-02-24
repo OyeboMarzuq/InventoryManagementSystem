@@ -28,7 +28,7 @@ namespace InventoryManagementSystem.Controllers
                 var result = await _authService.Login(model);
                 if (result.Success)
                 {
-                    return RedirectToAction("Auth", "Login");
+                    return RedirectToAction("index", "Home");
                 }
                 ModelState.AddModelError(string.Empty, result.Message);
             }
@@ -59,7 +59,7 @@ namespace InventoryManagementSystem.Controllers
             }
 
             // Redirect to the login page or dashboard upon successful signup
-            return RedirectToAction("Login", "Layout");
+            return RedirectToAction("index", "Home");
         }
 
         public IActionResult ChangePassword()

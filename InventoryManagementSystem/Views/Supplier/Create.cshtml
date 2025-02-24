@@ -1,79 +1,99 @@
 ﻿@model InventoryManagementSystem.DTO.SupplierDto
+
 @{
     ViewData["Title"] = "Create";
+    Layout = "_DashboardLayout";
 }
 
-<div class="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 p-6 space-y-8">
-    <div class="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-lg p-8 border border-white/20">
-        <div class="relative z-10">
-            <h1 class="text-3xl font-bold text-white mb-2">Add New Supplier</h1>
-            <p class="text-blue-200">Create a new supplier record</p>
-        </div>
-    </div>
+<h2>Add New Supplier</h2>
 
-    <div class="max-w-2xl mx-auto">
-        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-            <form asp-action="Create" method="post">
-                @Html.AntiForgeryToken()
+<div class="form-container">
+    <form method="post">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter supplier name" />
 
-                @if (!ViewContext.ModelState.IsValid)
-                {
-                    <div class="bg-red-500/20 border border-red-500/50 rounded-lg p-3 mb-6">
-                        <div asp-validation-summary="All" class="text-red-200 text-sm"></div>
-                    </div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter supplier email" />
+
+        <label for="phone">ValidPhoneNumber</label>
+        <input type="number" id="phone" name="phone" placeholder="Enter phone number" />
+
+        <label for="region">Region</label>
+        <input type="text" id="region" name="region" placeholder="Enter region" />
+
+        <label for="address">Address</label>
+        <textarea id="address" name="address" placeholder="Enter address"></textarea>
+
+        <label for="fatherName">Father Name</label>
+        <input type="text" id="fatherName" name="fatherName" placeholder="Enter father's name" />
+
+        <!-- Create Button -->
+        <button type="submit" class="Create">Create Supplier</button>
+
+        <!-- Cancel Button -->
+        <button type="button" class="cancel" onclick="window.location.href='/'">Cancel</button>
+    </form>
+</div>
+
+<style>
+    /* Form Container */
+    .form-container {
+        background-color: #1e1e2f;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+
+        /* Form Input Fields */
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="number"],
+        .form-container input[type="password"],
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            background-color: #2c2c3c;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        /* Form Labels */
+        .form-container label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* Buttons */
+        .form-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+
+            .form-container button.create {
+                background-color: #28a745;
+                color: #fff;
+            }
+
+                .form-container button.create:hover {
+                    background-color: #218838;
                 }
 
-                <div class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Name -->
-                        <div class="space-y-2">
-                            <label asp-for="Name" class="block text-sm font-medium text-blue-200">Name</label>
-                            <input asp-for="Name" class="form-input" />
-                            <span asp-validation-for="Name" class="text-red-400 text-xs"></span>
-                        </div>
+            .form-container button.cancel {
+                background-color: #dc3545;
+                color: #fff;
+            }
 
-                        <!-- Email -->
-                        <div class="space-y-2">
-                            <label asp-for="Email" class="block text-sm font-medium text-blue-200">Email</label>
-                            <input asp-for="Email" type="email" class="form-input" />
-                            <span asp-validation-for="Email" class="text-red-400 text-xs"></span>
-                        </div>
-
-                        <!-- Phone Number -->
-                        <div class="space-y-2">
-                            <label asp-for="ValidPhoneNumber" class="block text-sm font-medium text-blue-200">Phone Number</label>
-                            <input asp-for="ValidPhoneNumber" type="tel" class="form-input" />
-                            <span asp-validation-for="ValidPhoneNumber" class="text-red-400 text-xs"></span>
-                        </div>
-
-                        <!-- Region -->
-                        <div class="space-y-2">
-                            <label asp-for="Region" class="block text-sm font-medium text-blue-200">Region</label>
-                            <input asp-for="Region" class="form-input" />
-                            <span asp-validation-for="Region" class="text-red-400 text-xs"></span>
-                        </div>
-                    </div>
-
-                    <!-- Address -->
-                    <div class="space-y-2">
-                        <label asp-for="Address" class="block text-sm font-medium text-blue-200">Address</label>
-                        <textarea asp-for="Address" rows="3" class="form-input"></textarea>
-                        <span asp-validation-for="Address" class="text-red-400 text-xs"></span>
-                    </div>
-
-                    <!-- Father Name -->
-                    <div class="space-y-2">
-                        <label asp-for="FatherName" class="block text-sm font-medium text-blue-200">Father Name</label>
-                        <input asp-for="FatherName" class="form-input" />
-                        <span asp-validation-for="FatherName" class="text-red-400 text-xs"></span>
-                    </div>
-
-                    <div class="flex justify-end space-x-4">
-                        <a asp-action="Index" class="button-secondary">Cancel</a>
-                        <button type="submit" class="button-primary">Create Supplier</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+                .form-container button.cancel:hover {
+                    background-color: #c82333;
+                }
+</style>

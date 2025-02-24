@@ -5,7 +5,7 @@ namespace InventoryManagementSystem.Implementation.Interface
 {
     public interface IProductService
     {
-        Task<List<ProductDto>> GetAllProductsAsync();
+        Task<List<ProductDto>> GetAllProductsAsync(string Id);
         Task<ProductDto> GetProductByIdAsync(string productId);
         Task<BaseResponse<bool>> CreateProductAsync(ProductDto productDto);
         Task<BaseResponse<bool>> UpdateProductAsync(string productId, ProductDto productDto);

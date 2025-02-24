@@ -5,6 +5,9 @@ namespace InventoryManagementSystem.DTO
 {
     public class SignUpDto
     {
+        [Required(ErrorMessage = "Username is required.")]
+        public string? Username { get; set; }
+
         [Required(ErrorMessage = "First Name is required.")]
         public string? FirstName { get; set; }
 
@@ -15,9 +18,9 @@ namespace InventoryManagementSystem.DTO
         [Required(ErrorMessage = "Address is required.")]
         public string? Address { get; set; }
 
-        [Required(ErrorMessage = "Password is required.")]
-        [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be between 6 and 100 characters.")]
-        public string? Password { get; set; }
+        [Required(ErrorMessage = "Password is required")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
 
         [Required(ErrorMessage = "Gender is required.")]
         public Gender Gender { get; set; }

@@ -14,17 +14,17 @@ namespace InventoryManagementSystem.Implementation.Repository
             _context = context;
         }
 
-        public async Task<List<Supplier>> GetAllAsync()
+        public async Task<List<Supplier>> GetAllSuppliersAsync()
         {
             return await _context.Suppliers.ToListAsync();
         }
 
-        public async Task<Supplier> GetByIdAsync(string supplierId)
+        public async Task<Supplier> GetList(string supplierId)
         {
             return await _context.Suppliers.FirstOrDefaultAsync(s => s.Id.ToString() == supplierId);
         }
 
-        public async Task<Supplier> AddAsync(Supplier supplier)
+        public async Task<Supplier> Create(Supplier supplier)
         {
             await _context.Suppliers.AddAsync(supplier);
             await _context.SaveChangesAsync();

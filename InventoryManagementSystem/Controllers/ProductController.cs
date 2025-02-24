@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InventoryManagementSystem.Implementation.Interface;
+using Azure.Core;
+using InventoryManagementSystem.Implementation.Services;
+using InventoryManagementSystem.Entities;
+using Microsoft.AspNetCore.Mvc;
 using InventoryManagementSystem.DTO;
-using InventoryManagementSystem.Implementation.Interface;
 
 namespace InventoryManagementSystem.Controllers
 {
@@ -13,21 +16,15 @@ namespace InventoryManagementSystem.Controllers
             _productService = productService;
         }
 
-        // GET: Product
-        public async Task<IActionResult> Index()
-        {
-            var products = await _productService.GetAllProductsAsync();
-            return View(products);
-        }
-
         // GET: Product/Details
-        public async Task<IActionResult> Detail(string id)
+        [HttpGet("Detail/{id}")]
+        public async Task<IActionResult> Detail(string Id)
         {
-            if (id == string.Empty) return NotFound();
-
-            var product = await _productService.GetProductByIdAsync(id);
-            if (product == null) return NotFound();
-
+            var product = await _productService.GetAllProductsAsync(Id);
+            if (product == null)
+            {
+                return NotFound(); // Handle missing product
+            }
             return View(product);
         }
 
@@ -42,16 +39,22 @@ namespace InventoryManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductDto productDto)
         {
-            if (!ModelState.IsValid) return View(productDto);
+            if (ModelState.IsValid)
+            {
+                // Save the product (assuming a service is used for data handling)
+                await _productService.CreateProductAsync(productDto);
 
-            var response = await _productService.CreateProductAsync(productDto);
-            if (response.Success) return RedirectToAction(nameof(Index));
+                // Redirect to the Product Details page after successful creation
+                return RedirectToAction("Details", new { id = productDto.Id });
+            }
 
-            ModelState.AddModelError(string.Empty, response.Message);
+            // If model validation fails, return to the Create view
             return View(productDto);
         }
 
+
         // GET: Product/Edit/5
+        [HttpGet("Edit/{id}")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == string.Empty) return NotFound();
@@ -63,11 +66,11 @@ namespace InventoryManagementSystem.Controllers
         }
 
         // POST: Product/Edit
-        [HttpPost]
+        [HttpPost("Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, ProductDto productDto)
         {
-            if (id != productDto.ProductId) return BadRequest();
+            if (id != productDto.Id) return BadRequest();
 
             if (!ModelState.IsValid) return View(productDto);
 
@@ -79,6 +82,7 @@ namespace InventoryManagementSystem.Controllers
         }
 
         // GET: Product/Delete/5
+        [HttpGet("Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == string.Empty) return NotFound();
@@ -90,7 +94,7 @@ namespace InventoryManagementSystem.Controllers
         }
 
         // POST: Product/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Delete/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {

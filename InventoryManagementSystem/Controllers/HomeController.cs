@@ -12,8 +12,13 @@ namespace InventoryManagementSystem.Controllers
         {
             _logger = logger;
         }
-        
+
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult SignUp()
         {
             return View();
         }

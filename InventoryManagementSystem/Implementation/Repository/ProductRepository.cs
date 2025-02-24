@@ -14,15 +14,20 @@ namespace InventoryManagementSystem.Implementation.Repository
             _context = context;
         }
 
-        public async Task<List<Product>> GetAllAsync()
+        public async Task<List<Product>> GetAllProductsAsync(string Id)
         {
             return await _context.Products.ToListAsync();
         }
 
-        public async Task<Product> GetByIdAsync(string productId)
+        public async Task<Product> GetByIdAsync(string id)
         {
-            return await _context.Products.FirstOrDefaultAsync(p => p.Id == productId);
+            return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        //public async Task<Product> GetByIdAsync(string productId)
+        //{
+        //    return await _context.Products.FirstOrDefaultAsync(p => p.Id == productId);
+        //}
 
         public async Task<Product> AddAsync(Product product)
         {

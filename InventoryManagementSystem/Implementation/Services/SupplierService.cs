@@ -14,25 +14,38 @@ namespace InventoryManagementSystem.Implementation.Services
         {
             _supplierRepository = supplierRepository;
         }
-
-        public async Task<List<SupplierDto>> GetAllSuppliersAsync()
+        public async Task<BaseResponse<List<SupplierDto>>> GetAllSuppliersAsync()
         {
-            var suppliers = await _supplierRepository.GetAllAsync();
-            return suppliers.ConvertAll(s => new SupplierDto
+            try
             {
-                SupplierId = s.Id.ToString(),
-                Name = s.Name,
-                Email = s.Email,
-                ValidPhoneNumber = s.ValidPhoneNumber,
-                Region = s.Region,
-                Address = s.Address,
-                FatherName = s.FatherName
-            });
+                var suppliers = await _supplierRepository.GetAllSuppliersAsync();
+
+                if (suppliers.Count > 0)
+                {
+                    var data = suppliers.Select(x => new SupplierDto
+                    {
+                        Name = x.Name,
+                        Email = x.Email,
+                        ValidPhoneNumber = x.ValidPhoneNumber,
+                        Region = x.Region,
+                        Address = x.Address,
+                        FatherName = x.FatherName
+                    }).ToList();
+
+                    return new BaseResponse<List<SupplierDto>> { Message = "Data retrieved successfuly", IsSuccessful = true, Data = data };
+                }
+
+                return new BaseResponse<List<SupplierDto>> { Message = "No record", IsSuccessful = false, Data = new List<SupplierDto>() };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<List<SupplierDto>> { Message = $"Error :  {ex.Message}", IsSuccessful = false, Data = new List<SupplierDto>() };
+            }
         }
 
-        public async Task<SupplierDto> GetSupplierByIdAsync(string supplierId)
+        public async Task<SupplierDto> GetList(string supplierId)
         {
-            var supplier = await _supplierRepository.GetByIdAsync(supplierId);
+            var supplier = await _supplierRepository.GetList(supplierId);
             if (supplier == null) return null;
 
             return new SupplierDto
@@ -47,7 +60,7 @@ namespace InventoryManagementSystem.Implementation.Services
             };
         }
 
-        public async Task<BaseResponse<bool>> CreateSupplierAsync(SupplierDto supplierDto)
+        public async Task<BaseResponse<bool>> Create(SupplierDto supplierDto)
         {
             var supplier = new Supplier
             {
@@ -59,13 +72,13 @@ namespace InventoryManagementSystem.Implementation.Services
                 FatherName = supplierDto.FatherName
             };
 
-            var result = await _supplierRepository.AddAsync(supplier);
+            var result = await _supplierRepository.Create(supplier);
             return new BaseResponse<bool>(true, "Supplier created successfully.");
         }
 
         public async Task<BaseResponse<bool>> UpdateSupplierAsync(string supplierId, SupplierDto supplierDto)
         {
-            var supplier = await _supplierRepository.GetByIdAsync(supplierId);
+            var supplier = await _supplierRepository.GetList(supplierId);
             if (supplier == null)
                 return new BaseResponse<bool>(false, "Supplier not found.");
 
@@ -82,7 +95,7 @@ namespace InventoryManagementSystem.Implementation.Services
 
         public async Task<BaseResponse<bool>> DeleteSupplierAsync(string supplierId)
         {
-            var supplier = await _supplierRepository.GetByIdAsync(supplierId);
+            var supplier = await _supplierRepository.GetList(supplierId);
             if (supplier == null)
                 return new BaseResponse<bool>(false, "Supplier not found.");
 
